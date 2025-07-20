@@ -4,10 +4,10 @@ import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
 
-// 👉 Default blank field
+
 const defaultField = () => ({ key: '', type: 'string', children: [] });
 
-// 👉 Recursive field row component
+
 function FieldRow({ field, onChange, onDelete }) {
   const handleKeyChange = (e) => onChange({ ...field, key: e.target.value });
   const handleTypeChange = (value) => {
@@ -71,7 +71,7 @@ function FieldRow({ field, onChange, onDelete }) {
   );
 }
 
-// 👉 App component manages top-level field array
+
 function App() {
   const [fields, setFields] = useState([defaultField()]);
 
@@ -87,7 +87,7 @@ function App() {
     setFields(newFields);
   };
 
-  // 👉 Convert state to JSON schema (recursive)
+  /
   const buildSchema = (fieldsArray) => {
     const schema = {};
     for (const field of fieldsArray) {
