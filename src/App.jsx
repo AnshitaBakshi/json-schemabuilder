@@ -36,23 +36,25 @@ function FieldRow({ field, onChange, onDelete }) {
   };
 
   return (
-    <Card style={{ marginBottom: 10 }}>
+    <Card style={{ marginBottom:10}}>
+      <div style={{display:'flex',alignItems:'center',gap:10}}>
       <Input
         placeholder="Field Name"
         value={field.key}
         onChange={handleKeyChange}
-        style={{ width: 200, marginRight: 10 }}
+        style={{ width: 200, marginRight: 20 }}
       />
       <Select
         value={field.type}
         onChange={handleTypeChange}
-        style={{ width: 150, marginRight: 10 }}
+        style={{ width: 150, marginRight: 15 }}
       >
         <Option value="string">String</Option>
         <Option value="number">Number</Option>
         <Option value="nested">Nested</Option>
       </Select>
       <Button icon={<CloseOutlined />} danger onClick={onDelete} />
+      </div>
 
       {field.type === 'nested' && (
         <div style={{ marginLeft: 20, marginTop: 10 }}>
@@ -104,8 +106,13 @@ function App() {
   };
 
   return (
-    <div style={{ padding: 20 }}>
+    <div style={{ padding: 10 }}>
       <h1>JSON Schema Builder</h1>
+      <div style={{
+        display:'flex',alignItems:'flex-start', gap:150,flexWrap:'wrap'
+      }}>
+
+        <div style={{flex:1, minWidth:300}}>
       {fields.map((field, index) => (
         <FieldRow
           key={index}
@@ -117,11 +124,15 @@ function App() {
       <Button icon={<PlusOutlined />} onClick={addField}>
         Add Field
       </Button>
+      </div>
+      <div style={{flex:1,minWidth:300}}>
 
       <h2>JSON Preview</h2>
       <pre style={{ background: '#f5f5f5', padding: 10 }}>
         {JSON.stringify(buildSchema(fields), null, 2)}
       </pre>
+      </div>
+      </div>
     </div>
   );
 }
