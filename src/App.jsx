@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Input, Select, Card, Button } from 'antd';
-import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
+import { CloseOutlined, PlusOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
+
 
 
 const defaultField = () => ({ key: '', type: 'string', children: [] });
@@ -10,6 +11,7 @@ const defaultField = () => ({ key: '', type: 'string', children: [] });
 
 function FieldRow({ field, onChange, onDelete }) {
   const handleKeyChange = (e) => onChange({ ...field, key: e.target.value });
+
   const handleTypeChange = (value) => {
     const updated = { ...field, type: value };
     if (value !== 'nested') updated.children = [];
@@ -50,7 +52,7 @@ function FieldRow({ field, onChange, onDelete }) {
         <Option value="number">Number</Option>
         <Option value="nested">Nested</Option>
       </Select>
-      <Button icon={<DeleteOutlined />} danger onClick={onDelete} />
+      <Button icon={<CloseOutlined />} danger onClick={onDelete} />
 
       {field.type === 'nested' && (
         <div style={{ marginLeft: 20, marginTop: 10 }}>
@@ -87,7 +89,7 @@ function App() {
     setFields(newFields);
   };
 
-  /
+  
   const buildSchema = (fieldsArray) => {
     const schema = {};
     for (const field of fieldsArray) {
